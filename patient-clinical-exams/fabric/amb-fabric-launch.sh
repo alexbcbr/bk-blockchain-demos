@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export REGION=us-east-1
-export STACKNAME=healthcare-amb
+export STACKNAME=healthcare-fabric-amb
 
 echo Creating Amazon Managed Blockchain network, member and peer node
 

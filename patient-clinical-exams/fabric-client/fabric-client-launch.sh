@@ -3,6 +3,8 @@
 echo Creating VPC - TODO. Create the VPC, subnets, security group, EC2 client node, VPC endpoint
 echo Create a keypair
 
+export REGION=us-east-1
+
 STACKNAME=$(aws cloudformation describe-stacks --region $REGION --query 'Stacks[?Description==`Amazon Managed Blockchain. Creates network with a single member and peer node`] | [0].StackName' --output text)
 NETWORKNAME=$(aws cloudformation describe-stacks --stack-name $STACKNAME --region $REGION --query 'Stacks[0].Outputs[?OutputKey==`NetworkName`].OutputValue' --output text)
 NETWORKID=$(aws cloudformation describe-stacks --stack-name $STACKNAME --region $REGION --query 'Stacks[0].Outputs[?OutputKey==`NetworkId`].OutputValue' --output text)
@@ -24,6 +26,14 @@ fi
 
 chmod 400 ~/$NETWORKNAME-keypair.pem
 sleep 10
+
+aws s3 cp setup/docker.sh s3://alexbc.blockchain/fabric-client/
+aws s3 cp setup/go.sh s3://alexbc.blockchain/fabric-client/
+aws s3 cp setup/jq.sh s3://alexbc.blockchain/fabric-client/
+aws s3 cp setup/fabric-setup.sh s3://alexbc.blockchain/fabric-client/
+aws s3 cp setup/update_etc_hosts.sh s3://alexbc.blockchain/fabric-client/
+aws s3 cp setup/bootstrap.sh s3://alexbc.blockchain/fabric-client/
+aws s3 cp setup/manage_hosts.sh s3://alexbc.blockchain/fabric-client/
 
 echo Create the VPC, the Fabric client node and the VPC endpoints
 aws cloudformation deploy --stack-name $NETWORKNAME-fabric-client-node --template-file fabric-client-node.yaml \

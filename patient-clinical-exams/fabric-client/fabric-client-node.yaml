@@ -158,7 +158,24 @@ Resources:
           SubnetId:                               !Ref BlockchainPublicSubnet
         Tags:
           - Key:                                  Name
-            Value:                                ManagedBlockchainEC2ClientInstance
+            Value:                                hyperledger-fabric-client
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash
+            apt update -y
+            apt install -y python python-pip golang-go zip
+            pip install --upgrade pip
+            pip install --upgrade awscli
+            aws s3 cp s3://alexbc.blockchain/fabric-client/ . --recursive
+            chmod u+x *.sh
+            ./docker.sh
+            ./go.sh
+            ./jq.sh
+            sudo -E ./fabric-setup.sh
+
+            # update -y aws-cfn-bootstrap
+            #/opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource LaunchConfig --region ${AWS::Region}
+            #/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource WebServerGroup --region ${AWS::Region}
  
   BlockchainELB:
     Type:                                         AWS::ElasticLoadBalancing::LoadBalancer

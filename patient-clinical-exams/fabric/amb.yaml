@@ -59,7 +59,7 @@ Parameters:
     AllowedPattern: "^[0-9a-zA-Z]+$"
     ConstraintDescription: Network name must be alphanumeric and cannot contain spaces.
     Type: String
-    Default: ngo
+    Default: healthcare
   NetworkDescription:
     Description: An optional description of your network.
     Type: String
