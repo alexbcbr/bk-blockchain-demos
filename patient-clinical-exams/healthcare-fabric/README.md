@@ -101,8 +101,7 @@ When you Invoke and query transactions, you cat set the log level
 ```
 export FABRIC_LOGGING_SPEC=ERROR
 
-peer chaincode invoke -o $ORDERER -C $CHANNEL -n $CHAINCODENAME \
-    -c '{"Args":["invoke","a","b","10"]}' --cafile $CAFILE --tls
+peer chaincode invoke -o $ORDERER -C $CHANNEL -n $CHAINCODENAME -c '{"Args":["invoke","a","b","10"]}' --cafile $CAFILE --tls
 
 peer chaincode query -C $CHANNEL -n $CHAINCODENAME -c '{"Args":["query","a"]}'
 ```
