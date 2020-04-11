@@ -1,24 +1,38 @@
 # Introduction
+These steps allow you to run setup `credentials`, `fabric channels` and `chaincode` to run a smart contract
 
-This steps allow you to run setup `credentials`, `fabric channels` and `chaincode` to run a smart contract
+# Amazon Blockchain Network Configuration
+The script allow set a environment with Fabric Network and one peer. You don't need to run init.sh which will be called automatically.
 
-# Setting Fabric Server
+````
+cd fabric
+./amb-fabric-launch.sh
+```
+# Hyperledger Fabric client
+This script will create a VPC and EC2 instance dedicated to fabric client. One of key configurations is setting the Endpoint allowing EC2 communication with AMB.
+
+````
+cd fabric-client
+./fabric-client-launch.sh 
+```
+
+
+# Amazon Blockchain Network Configuration
 
 ```
-* export REGION=us-east-1
-
+export REGION=us-east-1
 cd ~/non-profit-blockchain/ngo-fabric
-````
 
 source fabric-exports.sh
 source ~/peer-exports.sh
-
-
 
 echo '** Peer endpoint: '$PEERSERVICEENDPOINT
 echo '** Membership service provider: '$MSP
  
 aws s3 cp s3://us-east-1.managedblockchain/etc/managedblockchain-tls-chain.pem managedblockchain-tls-chain.pem
+
+```
+
 
 1. Enroll an admin identity with the Fabric CA (certificate authority). We will use this identity to administer the Fabric network and perform tasks such as creating channels and instantiating chaincode.
 
