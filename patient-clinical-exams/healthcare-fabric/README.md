@@ -1,9 +1,19 @@
-export REGION=us-east-1
+# Introduction
+
+This steps allow you to run setup `credentials`, `fabric channels` and `chaincode` to run a smart contract
+
+# Setting Fabric Server
+
+```
+* export REGION=us-east-1
 
 cd ~/non-profit-blockchain/ngo-fabric
+````
 
 source fabric-exports.sh
 source ~/peer-exports.sh
+
+
 
 echo '** Peer endpoint: '$PEERSERVICEENDPOINT
 echo '** Membership service provider: '$MSP

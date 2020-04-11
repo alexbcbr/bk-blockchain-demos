@@ -166,7 +166,9 @@ Resources:
             apt install -y python python-pip golang-go zip
             pip install --upgrade pip
             pip install --upgrade awscli
+
             aws s3 cp s3://alexbc.blockchain/fabric-client/ . --recursive
+            
             chmod u+x *.sh
             ./docker.sh
             ./go.sh
