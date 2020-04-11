@@ -31,8 +31,8 @@ git config --global credential.UseHttpPath true
 git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/bk-blockchain-demos
 
 cd bk-blockchain-demos/patient-clinical-exams/healthcare-fabric
-source fabric-exports.sh
-source ~/peer-exports.sh
+source init.sh
+
 ```
 
 This step is only to check if the environment variable was set correctcly. Be aware that you're in the /home/ubuntu folder now. No changes is needed.
@@ -87,6 +87,14 @@ peer chaincode instantiate -o $ORDERER -C $CHANNEL -n $CHAINCODENAME -v $CHAINCO
 ```
 
 ## Step 6 - Invoke the chaincode
+
+Set the environment variable only when you reconnect the shell
+
+```
+cd bk-blockchain-demos/patient-clinical-exams/healthcare-fabric
+source init.sh
+```
+
 When you Invoke and query transactions, you cat set the log level 
 (FATAL | PANIC | ERROR | WARNING | INFO | DEBUG)
 

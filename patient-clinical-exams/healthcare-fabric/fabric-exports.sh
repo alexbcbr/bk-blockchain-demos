@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo Updating AWS CLI to the latest version
-sudo pip install awscli --upgrade
+#echo Updating AWS CLI to the latest version
+#sudo pip install awscli --upgrade
 cd ~
 
 export REGION=us-east-1
