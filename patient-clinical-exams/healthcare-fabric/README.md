@@ -14,7 +14,7 @@ cd fabric
 This script will create a VPC and EC2 instance dedicated to fabric client. One of key configurations is setting the Endpoint allowing EC2 communication with AMB.
 
 ```
-cd fabric-client
+cd ../fabric-client
 ./fabric-client-launch.sh
 ```
 
@@ -80,24 +80,21 @@ Install the chaincode in GO.
 peer channel list
 
 export GOPATH=~/bk-blockchain-demos/patient-clinical-exams/healthcare-fabric/
-export GOPATH=~/gopath/
 
 peer chaincode install -n $CHAINCODENAME -v $CHAINCODEVERSION -p $CHAINCODEDIR
-peer chaincode install -n mycc3 -v 1.0 -p $CHAINCODEDIR
 
-peer chaincode instantiate -o $ORDERER -C $CHANNEL -n mycc4 -v 1.0 \
-    -c '{"Args":["init","a","100","b","200"]}' --cafile $CAFILE --tls
-
-peer chaincode instantiate -o $ORDERER -C $CHANNEL \
-    -n $CHAINCODENAME -v $CHAINCODEVERSION \
-    -c '{"Args":["init","a","100","b","200"]}' --cafile $CAFILE --tls
+peer chaincode instantiate -o $ORDERER -C $CHANNEL -n $CHAINCODENAME -v $CHAINCODEVERSION -c '{"Args":["init","a","100","b","200"]}' --cafile $CAFILE --tls
 ```
 
 ## Step 6 - Invoke the chaincode
-Invoke and query transactions
+When you Invoke and query transactions, you cat set the log level 
+(FATAL | PANIC | ERROR | WARNING | INFO | DEBUG)
+
+```
+export FABRIC_LOGGING_SPEC=ERROR
 
 peer chaincode invoke -o $ORDERER -C $CHANNEL -n $CHAINCODENAME \
     -c '{"Args":["invoke","a","b","10"]}' --cafile $CAFILE --tls
 
 peer chaincode query -C $CHANNEL -n $CHAINCODENAME -c '{"Args":["query","a"]}'
-
+```
