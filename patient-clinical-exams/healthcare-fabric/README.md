@@ -105,3 +105,15 @@ peer chaincode invoke -o $ORDERER -C $CHANNEL -n $CHAINCODENAME -c '{"Args":["in
 
 peer chaincode query -C $CHANNEL -n $CHAINCODENAME -c '{"Args":["query","a"]}'
 ```
+
+## Step 7 view the JSON better (optional)
+```
+node
+let raw1 = JSON.parse('')
+raw1
+```
+
+## Step 8 - Check blocks being written on AMB
+
+In the peer node logs, enter with the text *Updates committed to history*
+
