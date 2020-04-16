@@ -1,8 +1,6 @@
 # Build a Hyperledger Fabric blockchain network using Amazon Managed Blockchain
 
-These steps allow you to run setup `credentials`, `fabric channels` and `chaincode` to run a smart contract. More information about the architecture in the diagram
-
-![Amazon Managed Blockchain](images/AmazonManagedBlockchain.png "Amazon Managed Blockchain")
+These steps allow you to run setup `credentials`, `fabric channels` and `chaincode` to run a smart contract. More information about the architecture ![in the diagram.](images/MultimemberNetwork.png "Amazon Managed Blockchain")
 
 ## Getting started
 
