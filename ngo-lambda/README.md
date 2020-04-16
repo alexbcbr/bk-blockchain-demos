@@ -5,7 +5,7 @@ Part 3 will show you how to publish a REST API with API Gateway and Lambda that 
 ![Architecture Diagram](./Lambda-API-AMB-architecture.png)
 
 ## Pre-requisites
- There are multiple parts to this demo.  Before starting on Part 3, you should have completed [Part 1](../patient-clinical-exams/README.md)
+ There are multiple parts to this demo.  Before starting on Part 3, you should have completed [Part 1](../patient-clinical-exams/healthcare-fabric/README.md)
 
 ## Step 1 Lambda Infrastructure
 
