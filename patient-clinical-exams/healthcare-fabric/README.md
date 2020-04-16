@@ -1,6 +1,17 @@
 # Build a Hyperledger Fabric blockchain network using Amazon Managed Blockchain
 
-These steps allow you to run setup `credentials`, `fabric channels` and `chaincode` to run a smart contract
+These steps allow you to run setup `credentials`, `fabric channels` and `chaincode` to run a smart contract. More information about the architecture in the diagram
+
+![Amazon Managed Blockchain](images/AmazonManagedBlockchain.png "Amazon Managed Blockchain")
+
+## Getting started
+
+To build the network, deploy the chaincode, start the RESTful API server and run the application, follow the README instructions in parts 1-4, in this order:
+
+* [Part 1:] Start the demo by building the Hyperledger Fabric blockchain network using
+ Amazon Managed Blockchain following the steps below.
+* [Part 2:](../../ngo-chaincode/README.md) Deploy the non-profit chaincode.
+* [Part 3:](../../ngo-lambda/README.md) Read and write to the blockchain with Amazon API Gateway and AWS Lambda.
 
 ## Step 1 - Amazon Blockchain Network Configuration
 The script allow set a environment with Fabric Network and one peer. You don't need to run init.sh which will be called automatically.
