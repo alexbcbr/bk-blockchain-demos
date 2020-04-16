@@ -39,7 +39,7 @@ git config --global credential.UseHttpPath true
 
 git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/bk-blockchain-demos
 
-cd bk-blockchain-demos/patient-clinical-exams/healthcare-fabric
+cd ~/bk-blockchain-demos/patient-clinical-exams/healthcare-fabric
 source init.sh
 
 ```

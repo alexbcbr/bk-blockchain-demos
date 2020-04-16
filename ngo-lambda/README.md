@@ -23,7 +23,7 @@ export LAMBDANAME=`echo "$NETWORKNAME-fabric-lambda" | tr '[:upper:]' '[:lower:]
 
 ~/bk-blockchain-demos/ngo-lambda/createLambda.sh
 
-## Step 1 Execute Lambda functtions
+## Step 1 Execute Lambda functions
 
 aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"queryObject\",\"chaincodeFunction\":\"queryAllDonors\",\"chaincodeFunctionArgs\":{}}" --region $REGION /tmp/lambda-output-queryAllDonors.txt
 
