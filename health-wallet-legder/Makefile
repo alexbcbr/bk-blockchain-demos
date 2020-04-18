@@ -8,6 +8,9 @@ data-load:
 list:
 	/usr/local/bin/python3 scan_table.py
 
+unittest:
+	/usr/local/bin/python3 -m unittest discover 
+
 clean:
 	aws qldb update-ledger --name health-wallet-ledger --no-deletion-protection
 	aws qldb delete-ledger --name health-wallet-ledger

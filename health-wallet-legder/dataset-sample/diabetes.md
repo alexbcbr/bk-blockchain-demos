@@ -9,6 +9,3 @@
 * Diabetes pedigree function
 * Age (years)
 * Class variable (0 or 1)
-
-
-
