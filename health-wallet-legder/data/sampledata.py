@@ -2,38 +2,44 @@ from datetime import datetime
 
 class SampleData:
     """
-    Sample domain objects for use throughout this tutorial.
+    Sample domain objects
     """
-    STUDENTS = [
+    PATIENTS = [
         {
             'FirstName': 'Raul',
             'LastName': 'Lewis',
             'Address': '1719 University Street, Seattle, WA, 98109',
             'DOB': datetime(1963, 8, 19),
-            'GovId': 'LEWISR261LL',
-            'GovIdType': 'Driver License'
+            'GovID': 'LEWISR261LL',
+            'GovIDType': 'Driver License'
         },
         {
             'FirstName': 'Brent',
             'LastName': 'Logan',
             'DOB': datetime(1967, 7, 3),
             'Address': '43 Stockert Hollow Road, Everett, WA, 98203',
-            'GovId': 'LOGANB486CG',
-            'GovIdType': 'Driver License'
+            'GovID': 'LOGANB486CG',
+            'GovIDType': 'Driver License'
         },
         {
             'FirstName': 'Alexis',
             'LastName': 'Pena',
             'DOB': datetime(1974, 2, 10),
             'Address': '4058 Melrose Street, Spokane Valley, WA, 99206',
-            'GovId': '744 849 301',
-            'GovIdType': 'SSN'
+            'GovID': '744 849 301',
+            'GovIDType': 'SSN'
         }
     ]
-    SCORE = [
+    BREAST = [
         {
-            'VIN': '1N4AL11D75C109151',
-            'Type': 'Algebra',
-            'SCORE': 90
+            'GovID': '744 849 301',
+            'menopause': 'premeno',
+            'tumor-size': '15-19',
+            'inv-nodes': 90,
+            'node-caps': 'yes',
+            'deg-malig': '3',
+            'breast': 'right',
+            'breast-quad': 'left_up',
+            'irradiat': 'left_up'
         }
     ]

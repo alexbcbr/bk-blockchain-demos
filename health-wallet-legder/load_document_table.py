@@ -31,8 +31,8 @@ def insert_documents(transaction_executor, table_name, documents):
     cursor = transaction_executor.execute_statement(statement, [util.convert_object_to_ion(documents)])
 
 def insert_documents_batch(transaction_executor):
-    insert_documents(transaction_executor, Constants.STUDENTS_NAME_TABLE_NAME, SampleData.STUDENTS)
-    insert_documents(transaction_executor, Constants.STUDENTS_EXAM_SCORE_TABLE_NAME, SampleData.SCORE)
+    insert_documents(transaction_executor, Constants.PATIENT_NAME_TABLE_NAME, SampleData.PATIENTS)
+    insert_documents(transaction_executor, Constants.BLOOD_EXAM_TABLE_NAME, SampleData.BREAST)
 
 if __name__ == '__main__':
 
@@ -41,18 +41,18 @@ if __name__ == '__main__':
     try:
         with qldb_driver.get_session() as session:
             session.execute_lambda(lambda x: 
-                                   create_table(x, Constants.STUDENTS_NAME_TABLE_NAME) and
-                                   create_table(x, Constants.STUDENTS_EXAM_SCORE_TABLE_NAME),
+                                   create_table(x, Constants.PATIENT_NAME_TABLE_NAME) and
+                                   create_table(x, Constants.BLOOD_EXAM_TABLE_NAME),
                                    lambda retry_attempt: logger.info('Retrying due to OCC conflict...'))
 
             input("Tables created successfully. Press <ENTER> to create index\n")
             
             session.execute_lambda(lambda x: 
-                                   create_index(x, Constants.STUDENTS_NAME_TABLE_NAME,
-                                                   Constants.STUDENT_ID_INDEX_NAME) and
+                                   create_index(x, Constants.PATIENT_NAME_TABLE_NAME,
+                                                   Constants.PATIENT_ID_INDEX_NAME) and
 
-                                   create_index(x, Constants.STUDENTS_EXAM_SCORE_TABLE_NAME,
-                                                   Constants.STUDENTS_EXAM_SCORE_INDEX_NAME),
+                                   create_index(x, Constants.BLOOD_EXAM_TABLE_NAME,
+                                                   Constants.BLOOD_EXAM_INDEX_NAME),
                                    lambda retry_attempt: logger.info('Retrying due to OCC conflict...'))
 
             input("Indexes created successfully. Press <ENTER> to load sample data\n")
