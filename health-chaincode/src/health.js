@@ -2,11 +2,6 @@
 const shim = require('fabric-shim');
 const util = require('util');
 
-/**
- * Executes a query using a specific key
- * 
- * @param {*} key - the key to use in the query
- */
 async function queryByKey(stub, key) {
   console.log('============= START : queryByKey ===========');
   console.log('**** queryByKey key: ' + key);
@@ -20,11 +15,6 @@ async function queryByKey(stub, key) {
   return resultAsBytes;
 }
 
-/**
- * Executes a query based on a provided queryString
- * 
- * @param {*} queryString - the query string to execute
- */
 async function queryByString(stub, queryString) {
   console.log('============= START : queryByString ===========');
   console.log("**** queryByString queryString: " + queryString);
@@ -127,45 +117,34 @@ let Chaincode = class {
    * Patient functions 
    ************************************************************************************************/
 
-   /**
-   * Creates a new Patient
-   * 
-   * @param {*} stub 
-   * @param {*} args - JSON as follows:
-   * {
-   *    "donorUserName":"edge",
-   *    "email":"edge@abc.com",
-   *    "registeredDate":"2018-10-22T11:52:20.182Z"
-   * }
-   */
-  async createPatient(stub, args) {
-    console.log('============= START : createPatient ===========');
-    console.log('**** createPatient arguments: ' + JSON.stringify(args));
+  async recordBloodDonation(stub, args) {
+    console.log('============= START : recordBloodDonation ===========');
+    console.log('**** recordBloodDonation arguments: ' + JSON.stringify(args));
 
     // args is passed as a JSON string
     let json = JSON.parse(args);
     let key = 'donor' + json['donorUserName'];
     json['docType'] = 'donor';
 
-    console.log('**** createPatient payload: ' + JSON.stringify(json));
+    console.log('**** recordBloodDonation payload: ' + JSON.stringify(json));
 
     await stub.putState(key, Buffer.from(JSON.stringify(json)));
-    console.log('============= END : createPatient ===========');
+    console.log('============= END : recordBloodDonation ===========');
   }
 
-  async queryPatient(stub, args) {
-    console.log('============= START : queryPatient ===========');
-    console.log('**** queryPatient arguments: ' + JSON.stringify(args));
+  async queryDonationByPatient(stub, args) {
+    console.log('============= START : queryDonationByPatient ===========');
+    console.log('**** queryDonationByPatient arguments: ' + JSON.stringify(args));
 
     // args is passed as a JSON string
     let json = JSON.parse(args);
     let key = 'donor' + json['donorUserName'];
-    console.log('**** queryPatient key: ' + key);
+    console.log('**** queryDonationByPatient key: ' + key);
 
     return queryByKey(stub, key);
   }
 
-  async queryAllPatients(stub, args) {
+  async queryAllDonations(stub, args) {
     console.log('============= START : queryAllPatients ===========');
     console.log('**** queryAllPatients arguments: ' + JSON.stringify(args));
  

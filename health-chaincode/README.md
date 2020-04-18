@@ -32,19 +32,22 @@ peer chaincode upgrade -o $ORDERER -C $CHANNEL -n health -v 2.0 -c '{"Args":["in
 
 ## Step 2 Test chaincode
 
+```
 peer chaincode invoke -C $CHANNEL -n health \
-    -c  '{"Args":["createPatient","{\"donorUserName\": \"John\", \"exam\": \"001\", \"substance\": \"XPTO\", \"registeredDate\": \"2018-10-22T11:52:20.182Z\"}"]}' -o $ORDERER --cafile $CAFILE --tls
+    -c  '{"Args":["recordBloodDonation","{\"donorUserName\": \"Alexis Pena\", \"volumeDonated\": \"12500\", \"bloodType\": \"O+\", \"registeredDate\": \"2020-04-18T11:52:20.182Z\"}"]}' -o $ORDERER --cafile $CAFILE --tls
 
-peer chaincode query -C mychannel -n health -c '{"Args":["queryAllPatients"]}'
+peer chaincode query -C mychannel -n health -c '{"Args":["queryAllDonations"]}'
 
-peer chaincode query -C mychannel -n health -c '{"Args":["queryPatient","{\"donorUserName\": \"edge\"}"]}'
+peer chaincode query -C mychannel -n health -c '{"Args":["queryDonationByPatient","{\"donorUserName\": \"Alexis Pena\"}"]}'
 
-peer chaincode query -C mychannel -n health -c '{"Args":["queryPatient","{\"donorUserName\": \"99ALEX88\"}"]}'
+```
 
-peer chaincode query -C mychannel -n health -c '{"Args":["queryHistoryForKey","{\"Key\": \"donoredge\"}"]}'
+You can view JSON using https://jsonparseronline.com/ 
+
 
 ## Step 4 Run Lambda functions
 
+```
 export FABRICUSER=$ADMINUSER-msp
 export FABRICUSERPASSWORD=$ADMINPWD
 export CERTS_FOLDER=~/admin-msp
@@ -54,12 +57,11 @@ export LAMBDANAME=`echo "$NETWORKNAME-fabric-lambda" | tr '[:upper:]' '[:lower:]
 
 Change the property in the lambda code from `ngo` to `health`
 
-aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"invoke\",\"chaincodeFunction\":\"createPatient\",\"chaincodeFunctionArgs\":{\"donorUserName\":\"sueli\",\"email\":\"sueli@melissasngo.org\"}}" --region $REGION /tmp/lambda-output-createDonor.txt
+aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"invoke\",\"chaincodeFunction\":\"recordBloodDonation\",\"chaincodeFunctionArgs\":{\"donorUserName\":\"Sueli Coqueiro\",\"volumeDonated\":\"7800\"}}" --region $REGION lambda-output-createDonor.json
 
-aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"queryObject\",\"chaincodeFunction\":\"queryPatient\",\"chaincodeFunctionArgs\":{\"donorUserName\":\"sueli\"}}" --region $REGION /tmp/lambda-output-queryDonor.txt
-cat /tmp/lambda-output-queryDonor.txt
+aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"queryObject\",\"chaincodeFunction\":\"queryDonationByPatient\",\"chaincodeFunctionArgs\":{\"donorUserName\":\"Sueli Coqueiro\"}}" --region $REGION lambda-output-queryDonor.json
 
-aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"queryObject\",\"chaincodeFunction\":\"queryAllPatients\",\"chaincodeFunctionArgs\":{}}" --region $REGION /tmp/lambda-output-queryAllDonors.txt
+aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"queryObject\",\"chaincodeFunction\":\"queryAllDonations\",\"chaincodeFunctionArgs\":{}}" --region $REGION lambda-output-queryAllDonors.json
+```
 
-cat /tmp/lambda-output-queryAllDonors.txt
 
