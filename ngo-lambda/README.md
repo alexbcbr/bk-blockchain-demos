@@ -25,7 +25,7 @@ export LAMBDANAME=`echo "$NETWORKNAME-fabric-lambda" | tr '[:upper:]' '[:lower:]
 
 ## Step 1 Execute Lambda functions
 
-aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"queryObject\",\"chaincodeFunction\":\"queryAllDonors\",\"chaincodeFunctionArgs\":{}}" --region $REGION /tmp/lambda-output-queryAllDonors.txt
+aws lambda invoke --function-name $LAMBDANAME --payload "{\"fabricUsername\":\"$FABRICUSER\",\"functionType\":\"queryString\",\"chaincodeFunction\":\"queryAllDonations\",\"chaincodeFunctionArgs\":{}}" --region $REGION lambda-output-queryAllDonors.json
 
-cat /tmp/lambda-output-queryAllDonors.txt
+
 

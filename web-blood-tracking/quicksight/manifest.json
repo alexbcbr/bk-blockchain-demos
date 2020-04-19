@@ -1,0 +1,12 @@
+{
+    "fileLocations": [
+        {
+            "URIs": [
+                "https://s3.amazonaws.com/alexbc.healthcare/blood-donation/lambda-output-queryAllDonors.json"
+            ]
+        }
+    ],
+    "globalUploadSettings": {
+        "textqualifier": "\""
+    }
+}

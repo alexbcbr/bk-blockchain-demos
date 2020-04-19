@@ -7,6 +7,9 @@ are therefore able to track how their donations are being spent. The Fabric Chai
 ## Pre-requisites
  There are multiple parts to this demo.  Before starting on Part 3, you should have completed [Part 1](../patient-clinical-exams/README.md)
 
+cd ~/bk-blockchain-demos/patient-clinical-exams/healthcare-fabric
+source init.sh
+
 ## Step 1 Install NodeJS chaincode
 
 export GOPATH=~/bk-blockchain-demos/ngo-chaincode/src
