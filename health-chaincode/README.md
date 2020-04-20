@@ -34,11 +34,11 @@ peer chaincode upgrade -o $ORDERER -C $CHANNEL -n health -v 2.0 -c '{"Args":["in
 
 ```
 peer chaincode invoke -C $CHANNEL -n health \
-    -c  '{"Args":["recordBloodDonation","{\"donorUserName\": \"Alexis Pena\", \"volumeDonated\": \"12500\", \"bloodType\": \"O+\", \"registeredDate\": \"2020-04-18T11:52:20.182Z\"}"]}' -o $ORDERER --cafile $CAFILE --tls
+    -c  '{"Args":["recordBloodDonation","{\"donorUserName\": \"Guardiola\", \"volumeDonated\": \"12500\", \"bloodType\": \"O-\", \"registeredDate\": \"2020-04-18T11:52:20.182Z\"}"]}' -o $ORDERER --cafile $CAFILE --tls
 
 peer chaincode query -C mychannel -n health -c '{"Args":["queryAllDonations"]}'
 
-peer chaincode query -C mychannel -n health -c '{"Args":["queryDonationByPatient","{\"donorUserName\": \"Alexis Pena\"}"]}'
+peer chaincode query -C mychannel -n health -c '{"Args":["queryDonationByPatient","{\"donorUserName\": \"Guardiola\"}"]}'
 
 ```
 
